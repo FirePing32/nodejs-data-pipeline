@@ -1,0 +1,119 @@
+kind: StatefulSet
+apiVersion: apps/v1beta1
+metadata:
+  name: zookeeper-deployment-1
+  namespace: kafka-cluster
+spec:
+  serviceName: zoo1
+  replicas: 1
+  selector:
+    matchLabels:
+      name: zookeeper-1
+  template:
+    spec:
+      containers:
+      - name: zoo1
+        image: digitalwonderland/zookeeper
+        ports:
+        - containerPort: 2181
+        env:
+        - name: ZOOKEEPER_ID
+          value: "1"
+        - name: ZOOKEEPER_SERVER_1
+          value: zoo1
+        - name: ZOOKEEPER_SERVER_2
+          value: zoo2
+        - name: ZOOKEEPER_SERVER_3
+          value: zoo3
+        volumeMounts:
+          - name: zoo-volume-1
+            mountPath: "/var/lib/zookeeper"
+  volumeClaimTemplates:
+  - metadata:
+      name: zoo-volume-1
+    spec:
+      storageClassName: local-path
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+---
+kind: StatefulSet
+apiVersion: apps/v1beta1
+metadata:
+  name: zookeeper-deployment-2
+  namespace: kafka-cluster
+spec:
+  serviceName: zoo2
+  replicas: 1
+  selector:
+    matchLabels:
+      name: zookeeper-2
+  template:
+    spec:
+      containers:
+      - name: zoo2
+        image: digitalwonderland/zookeeper
+        ports:
+        - containerPort: 2181
+        env:
+        - name: ZOOKEEPER_ID
+          value: "2"
+        - name: ZOOKEEPER_SERVER_1
+          value: zoo1
+        - name: ZOOKEEPER_SERVER_2
+          value: zoo2
+        - name: ZOOKEEPER_SERVER_3
+          value: zoo3
+        volumeMounts:
+          - name: zoo-volume-2
+            mountPath: "/var/lib/zookeeper"
+  volumeClaimTemplates:
+  - metadata:
+      name: zoo-volume-2
+    spec:
+      storageClassName: local-path
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+---
+kind: StatefulSet
+apiVersion: apps/v1beta1
+metadata:
+  name: zookeeper-deployment-3
+  namespace: kafka-cluster
+spec:
+  serviceName: zoo3
+  replicas: 1
+  selector:
+    matchLabels:
+      name: zookeeper-3
+  template:
+    spec:
+      containers:
+      - name: zoo3
+        image: digitalwonderland/zookeeper
+        ports:
+        - containerPort: 2181
+        env:
+        - name: ZOOKEEPER_ID
+          value: "3"
+        - name: ZOOKEEPER_SERVER_1
+          value: zoo1
+        - name: ZOOKEEPER_SERVER_2
+          value: zoo2
+        - name: ZOOKEEPER_SERVER_3
+          value: zoo3
+        volumeMounts:
+          - name: zoo-volume-3
+            mountPath: "/var/lib/zookeeper"
+  volumeClaimTemplates:
+  - metadata:
+      name: zoo-volume-3
+    spec:
+      storageClassName: local-path
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
