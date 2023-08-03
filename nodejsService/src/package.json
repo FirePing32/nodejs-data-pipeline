@@ -1,0 +1,29 @@
+{
+  "name": "atlan-nodejs-service",
+  "version": "1.0.0",
+  "description": "NodeJS app to handle incoming requests from load balancer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/FirePing32/atlan-backend-task.git"
+  },
+  "author": "Prakhar Gurunani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FirePing32/atlan-backend-task/issues"
+  },
+  "homepage": "https://github.com/FirePing32/atlan-backend-task#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "kafka-node": "^5.0.0",
+    "kafkajs": "^2.2.4",
+    "mongoose": "^7.4.1",
+    "nodemon": "^3.0.1",
+    "validator": "^13.9.0"
+  }
+}
