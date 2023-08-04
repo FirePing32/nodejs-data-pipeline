@@ -23,7 +23,7 @@ const policySchema = new mongoose.Schema(
 policySchema.methods.addRule = async function (rules) {
     await mongoose.models.Policy.findByIdAndUpdate(this._id, {
         $push: {
-            rules: [...rules],
+            rules: rules,
         },
         function(err, doc) {
             if (err) {
