@@ -2,6 +2,7 @@ const express = require("express")
 
 const postFormController = require("../controller/postFormController")
 const getFormController = require("../controller/getFormController");
+const servicesController = require("../controller/servicesController")
 
 var formRouter = express.Router();
 
@@ -55,5 +56,11 @@ formRouter.get("/user/:userId/rules", getFormController.getRules);
 
 // Get form questions
 formRouter.get("/form/:formId/questions", getFormController.getFormQuestions);
+
+// Export to sheets
+formRouter.get("/services/sheets", servicesController.sheetExport)
+
+// Send messages
+formRouter.get("/services/message", servicesController.sendMessage)
 
 module.exports = formRouter;

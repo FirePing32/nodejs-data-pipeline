@@ -4,13 +4,15 @@ const client = require("twilio")(accountSid, authToken);
 
 async function sendMessage(response) {
     try {
-        client.messages
-            .create({
-                body: response.message,
-                from: "+919745623465",
-                to: response.phone,
-            })
-            .then((message) => console.log(message.sid));
+        response.numbers.forEach((phone) => {
+            client.messages
+                .create({
+                    body: response.message,
+                    from: "+919745623465",
+                    to: phone,
+                })
+                .then((message) => console.log(message.sid));
+        })
     } catch (err) {
         res.send("Failed to send SMS to the Client");
     }

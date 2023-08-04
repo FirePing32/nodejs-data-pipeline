@@ -7,7 +7,7 @@ const sheetsConsumer = require('./kafka.js');
 // checking for stream messages
 sheetsConsumer.run({
   eachMessage: async({ topic, partition, message}) => {
-    uploadResponse(message.value.toString())
+    uploadResponse(message.value.toJSON)
   }
 })
 
