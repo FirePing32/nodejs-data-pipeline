@@ -5,6 +5,7 @@ const Question = require("../models/questionModel.js");
 const Rule = require("../models/rulesModel.js");
 const User = require("../models/userModel.js");
 const Answer = require("../models/answerModel.js");
+const Memcached = require("../memcached.js")
 
 const formCreate = async (req, res) => {
     try{
@@ -13,6 +14,9 @@ const formCreate = async (req, res) => {
         res.status(400);
         return res.json({"error":e.message});
     }
+    await Mmemcached.set(form._id, form, 86400, function (err) {
+        if (err) throw new err();
+    });
     return res.json(form);
 }
 
@@ -29,6 +33,13 @@ const formAddQuestion = async (req, res) => {
         res.status(400);
         return res.json({"error":e.message});
     }
+
+    Memcached.del(form._id, function (err) {
+        if (err) throw new err();
+    });
+    await Mmemcached.set(form._id, form, 86400, function (err) {
+        if (err) throw new err();
+    });
     return res.json(question);
 }
 
@@ -149,6 +160,13 @@ const answerCreate = async (req, res) => {
         res.status(400);
         return res.json({ error: e.message });
     }
+
+    Memcached.del(form._id, function (err) {
+        if (err) throw new err();
+    });
+    await Mmemcached.set(form._id, form, 86400, function (err) {
+        if (err) throw new err();
+    });
     return res.json(answer);
 };
 
