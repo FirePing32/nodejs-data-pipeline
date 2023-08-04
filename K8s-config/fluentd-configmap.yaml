@@ -12,7 +12,7 @@ data:
 
       <store>
         @type elasticsearch
-        host AtlanElasticsearch
+        host elasticsearch
         port 9200
         logstash_format true
         logstash_prefix fluentd
