@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: mongo
-  name: mongodb-hostelallocator
+  name: mongodb-svc
 spec:
   type: NodePort
   ports:
