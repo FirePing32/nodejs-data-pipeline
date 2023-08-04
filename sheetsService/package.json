@@ -1,0 +1,27 @@
+{
+  "name": "sheetsservice",
+  "version": "1.0.0",
+  "description": "Google sheets service to be used with primary NodeJS application",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "googleapis": "^123.0.0",
+    "kafka-node": "^5.0.0",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/FirePing32/atlan-backend-task.git"
+  },
+  "author": "Prakhar Gurunani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FirePing32/atlan-backend-task/issues"
+  },
+  "homepage": "https://github.com/FirePing32/atlan-backend-task#readme"
+}
