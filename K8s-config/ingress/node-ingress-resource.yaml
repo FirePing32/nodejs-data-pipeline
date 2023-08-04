@@ -10,13 +10,13 @@ spec:
   ingressClassName: nginx
   tls:
   rules:
-  - host: collect-backend-api.com
+  - host: this-url-does-not-work.com
     http:
       paths:
       - path: /(.*)
         pathType: Prefix
         backend:
           service:
-            name: nodejs
+            name: atlan-nodejs
             port:
-              number: 8181
+              number: 8000
