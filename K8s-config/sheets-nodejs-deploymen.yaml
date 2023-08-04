@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: atlan-sheets-nodejs
+  name: atlan-sheets-nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: atlan-sheets-nodejs
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: atlan-sheets-nodejs
+    spec:
+      containers:
+        - env:
+            - name: PORT
+              value: 9001
+          image: atlan-sheets-nodejs:latest
+          imagePullPolicy: IfNotPresent
+          name: atlan-sheets-nodejs
+          resources:
+            limits:
+              cpu: 200m
+            requests:
+              cpu: 50m
+          ports:
+            - containerPort: 9001
+      restartPolicy: Always
+status: {}

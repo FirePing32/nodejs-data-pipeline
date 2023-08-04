@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: atlan-message-nodejs
+  name: atlan-message-nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: atlan-message-nodejs
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: atlan-message-nodejs
+    spec:
+      containers:
+        - env:
+            - name: PORT
+              value: 9002
+          image: atlan-message-nodejs:latest
+          imagePullPolicy: IfNotPresent
+          name: atlan-message-nodejs
+          resources:
+            limits:
+              cpu: 200m
+            requests:
+              cpu: 50m
+          ports:
+            - containerPort: 9002
+      restartPolicy: Always
+status: {}
