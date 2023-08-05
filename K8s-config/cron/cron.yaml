@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ping-mongodb
+spec:
+  schedule: "0 */3 * * *"
+  startingDeadlineSeconds: 60
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: ping-mongodb
+              image: cron-image:latest
+              imagePullPolicy: IfNotPresent
+              env:
+                - name:  COMMAND
+                  value: mongo -u admin -p password123 mongodb-hostelallocator/rpm3?authSource=admin
+              command: ['sh', '-c',"./cron.sh"]
+          restartPolicy: OnFailure
