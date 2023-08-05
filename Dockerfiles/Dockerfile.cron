@@ -1,0 +1,5 @@
+FROM alpine:latest
+WORKDIR /usr/src/home
+
+COPY K8s-config/cron/cron.sh $WORKDIR
+RUN chmod +x cron.sh
